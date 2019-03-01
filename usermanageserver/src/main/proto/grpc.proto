@@ -1,0 +1,33 @@
+syntax = "proto3";
+//一些生成代码的设置
+option java_multiple_files = false;//以非外部类模式生成
+option java_package = "com.alibaba.usermanage.grpc";//所在包名
+option java_outer_classname = "UserRegister";//最外层类名称
+message RegisterRequest{
+    string userName = 1;
+    string password = 2;
+    string address = 3;
+    string postcode = 4;
+    string requestId = 5;
+}
+message RegisterResponse{
+    string result = 1;
+    string requestId = 2;
+}
+
+message LoginRequest{
+    string userName = 1;
+    string password = 2;
+    string requestId = 3;
+}
+
+message LoginResponse{
+    string result = 1;
+    string requestId = 2;
+}
+
+service UserManageService{
+    // 一对一服务请求
+    rpc Register(RegisterRequest) returns(RegisterResponse);
+    rpc Login(LoginRequest) returns(LoginResponse);
+}
